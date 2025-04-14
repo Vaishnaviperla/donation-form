@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Donation Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e8f5e9);
+      padding: 40px;
+      color: #0B3D91;
+    }
+ 
+    .form-container {
+      max-width: 650px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+ 
+    .form-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+ 
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0B3D91;
+      font-weight: 600;
+    }
+ 
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #1A73E8;
+      font-weight: 500;
+    }
+ 
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s ease;
+      color: #0B3D91;
+    }
+ 
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="date"]:focus,
+    select:focus {
+      border-color: #1A73E8;
+      outline: none;
+    }
+ 
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+ 
+    .checkbox-label {
+      color: #1A73E8;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+    }
+ 
+    input[type="submit"] {
+      width: 100%;
+      background: #1A73E8;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+ 
+    input[type="submit"]:hover {
+      background: #0B3D91;
+    }
+ 
+  </style>
+</head>
+<body>
+ 
+  <div class="form-container">
+    <h2>Donation Form</h2>
+ 
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdL00000NG12v" method="POST">
+      <input type="hidden" name="oid" value="00DdL00000NG12v">
+      <input type="hidden" name="retURL" value="https://yourwebsite.com/thank-you.html">
+ 
+      <!-- Existing User Checkbox -->
+      <label class="checkbox-label">
+        <input id="00NdL00000Rl6uj" name="00NdL00000Rl6uj" type="checkbox" value="1">
+        Existing User
+      </label>
+ 
+      <!-- Form Fields -->
+      <label for="first_name">First Name</label>
+      <input id="first_name" name="first_name" type="text" required>
+ 
+      <label for="last_name">Last Name</label>
+      <input id="last_name" name="last_name" type="text" required>
+ 
+      <div id="emailfield">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+ 
+      <label for="company">Organization Name</label>
+      <input id="company" name="company" type="text" required>
+ 
+      <div id="phoneField">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" type="tel" required>
+      </div>
+ 
+      <div id="uniqueIdField">
+        <label for="00NdL00000RldBF">Unique Id</label>
+        <input id="00NdL00000RldBF" name="00NdL00000RldBF" type="text" required>
+      </div>
+ 
+      <label for="00NdL00000RdIos">Donation Amount</label>
+      <input id="00NdL00000RdIos" name="00NdL00000RdIos" type="text" required>
+ 
+      <label for="00NdL00000RhPV3">Donation Type</label>
+      <select id="00NdL00000RhPV3" name="00NdL00000RhPV3" title="Donation Type">
+        <option value="">--None--</option>
+        <option value="One-Time">One-Time</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Event">Event</option>
+      </select>
+ 
+      <label for="00NdL00000RlKer">Donation Date</label>
+      <input id="00NdL00000RlKer" name="00NdL00000RlKer" type="date" required>
+ 
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+ 
+  <script>
+    const existingUserCheckbox = document.getElementById("00NdL00000Rl6uj");
+    const emailfield = document.getElementById("emailfield");
+    const emailInput = document.getElementById("email");
+    const phoneField = document.getElementById("phoneField");
+    const phoneInput = document.getElementById("phone");
+    const uniqueIdField = document.getElementById("uniqueIdField");
+ 
+    function toggleFields() {
+      const isExisting = existingUserCheckbox.checked;
+      uniqueIdField.style.display = isExisting ? "block" : "none";
+      emailfield.style.display = isExisting ? "none" : "block";
+      phoneField.style.display = isExisting ? "none" : "block";
+ 
+      if (isExisting) {
+        emailInput.removeAttribute("required");
+        phoneInput.removeAttribute("required");
+      } else {
+        emailInput.setAttribute("required", "required");
+        phoneInput.setAttribute("required", "required");
+      }
+    }
+ 
+    existingUserCheckbox.addEventListener("change", toggleFields);
+    window.onload = toggleFields;
+  </script>
+ 
+</body>
+</html>
